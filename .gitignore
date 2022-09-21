@@ -1,2 +1,6 @@
 /grid.vtk
 /pyvistatest.py
+*.vtu
+*.pvtu
+*.vtk
+*.pyc

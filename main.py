@@ -42,7 +42,7 @@ class goldak_heat:
         gold = []
         for i in range(x.shape[1]):
             af=self.af
-            gold.append(1e-10*math.exp(-(x[0,i])**2/self.af**2)*math.exp(-(x[1,i]-1+self.v*t)**2/self.af**2))
+            gold.append(1e6*math.exp(-(x[0,i]-0.5)**2/self.af**2)*math.exp(-(x[1,i]-self.v*t)**2/self.af**2))
         return np.array(gold)
 
 
@@ -52,7 +52,7 @@ file = io.VTKFile(MPI.COMM_WORLD, "result/u.vtk", "w")
 for n in range(num_steps):
     #f = fem.Constant(domain, beta - 2 - 2 * alpha)
     v = 0.1
-    q = goldak_heat(v=5)
+    q = goldak_heat(v=v)
     q.t = t
     f = fem.Function(V)   
     f.interpolate(q.eval)

@@ -22,5 +22,9 @@ def plot_timeseries(V, timesteps, uh_t):
     u_plotter.close()
 
 
-
-
+def plot_mesh(Mesh):
+    u_topology, u_cell_types, u_geometry = plot.create_vtk_mesh(Mesh)
+    u_grid = pyvista.UnstructuredGrid(u_topology, u_cell_types, u_geometry)
+    u_plotter = pyvista.Plotter()
+    current_mesh = u_plotter.add_mesh(u_grid, show_edges=True)
+    u_plotter.show()
